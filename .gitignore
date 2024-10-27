@@ -1,0 +1,11 @@
+*.suo
+*.pdb
+*.cache
+*.exe
+*.pdb
+.vs/
+bin/
+obj/
+*.user
+*.bak
+*.dll
