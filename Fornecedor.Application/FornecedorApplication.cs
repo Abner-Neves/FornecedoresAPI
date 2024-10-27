@@ -16,21 +16,19 @@ namespace Fornecedores.Application
             _fornecedorRepository = fornecedorRepository;
             _mapper = mapper;
         }
-        public Task DeleteFornecedor(int id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task DeleteFornecedor(int id)
+            => await _fornecedorRepository.DeleteFornecedor(id);
 
-        public Task<GetFornecedorDto> GetFornecedorById(int id)
+        public async Task<GetFornecedorDto> GetFornecedorById(int id)
         {
-            throw new NotImplementedException();
+            var fornecedor = await _fornecedorRepository.GetFornecedorById(id);
+            return _mapper.Map<GetFornecedorDto>(fornecedor);
         }
 
         public async Task<IEnumerable<GetFornecedorDto>> GetFornecedores()
         {
             var fornecedores = await _fornecedorRepository.GetFornecedors();
-            var fornecedoresDto = _mapper.Map<IEnumerable<GetFornecedorDto>>(fornecedores);
-            return fornecedoresDto;
+            return _mapper.Map<IEnumerable<GetFornecedorDto>>(fornecedores);
         }
         
         public async Task<InsertFornecedorDto> InsertFornecedor(InsertFornecedorDto fornecedorDto)
@@ -40,9 +38,12 @@ namespace Fornecedores.Application
             return _mapper.Map<InsertFornecedorDto>(result);
         }
 
-        public Task<GetFornecedorDto> UpdateFornecedor(int id, UpdateFornecedorDto fornecedor)
+        public async Task<GetFornecedorDto> UpdateFornecedor(int id, UpdateFornecedorDto fornecedorDto)
         {
-            throw new NotImplementedException();
+            var fornecedor = _mapper.Map<Fornecedor>(fornecedorDto);
+            fornecedor.Id = id;
+            var result = await _fornecedorRepository.UpdateFornecedor(fornecedor);
+            return _mapper.Map<GetFornecedorDto>(result);
         }
     }
 }

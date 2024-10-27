@@ -29,6 +29,34 @@ namespace Fornecedores.API.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetFornecedorById(int id)
+        {
+            try
+            {
+                var fornecedor = await _fornecedorApplication.GetFornecedorById(id);
+                return Ok(fornecedor);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateFornecedor(int id, [FromBody] UpdateFornecedorDto fornecedor)
+        {
+            try
+            {
+                var result = await _fornecedorApplication.UpdateFornecedor(id, fornecedor);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> InsertFornecedor([FromBody] InsertFornecedorDto fornecedor)
         {
@@ -42,6 +70,21 @@ namespace Fornecedores.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteFornecedor(int id)
+        {
+            try
+            {
+                await _fornecedorApplication.DeleteFornecedor(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
     }
 
