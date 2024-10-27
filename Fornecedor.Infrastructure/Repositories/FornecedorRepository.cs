@@ -24,6 +24,12 @@ namespace Fornecedores.Infrastructure.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+        public async Task<Fornecedor> GetFornecedorByCNPJ(string cpnj)
+            => await _context.Set<Fornecedor>().Where(f => f.CNPJ == cpnj).FirstOrDefaultAsync();
+
+        public async Task<Fornecedor> GetFornecedorByEmail(string email)
+            => await _context.Set<Fornecedor>().Where(f => f.Email == email).FirstOrDefaultAsync();
+
         public async Task<Fornecedor> GetFornecedorById(int id)
             => await _context.Set<Fornecedor>().Where(f => f.Id == id).FirstOrDefaultAsync();
         public async Task<IEnumerable<Fornecedor>> GetFornecedors()

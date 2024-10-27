@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Fornecedores.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/fornecedores")]
     public class FornecedorController : ControllerBase
     {
         private readonly IFornecedorApplication _fornecedorApplication;
@@ -84,7 +84,6 @@ namespace Fornecedores.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
 
     }
 
