@@ -15,6 +15,9 @@ namespace Fornecedores.API.Controllers
             _fornecedorApplication = fornecedorApplication;
         }
 
+        /// <summary>
+        /// Busca por todos os fornecedores cadastrados.
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> GetFornecedores()
         {
@@ -29,6 +32,10 @@ namespace Fornecedores.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Busca pelo fornecedor com o id informado.
+        /// </summary>
+        /// <param name="id">Identificador único do fornecedor.</param>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetFornecedorById(int id)
         {
@@ -43,6 +50,10 @@ namespace Fornecedores.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Atualiza os dados do fornecedor que possui o id informado.
+        /// </summary>
+        /// <param name="id">Identificador único do fornecedor.</param>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateFornecedor(int id, [FromBody] UpdateFornecedorDto fornecedor)
         {
@@ -57,6 +68,9 @@ namespace Fornecedores.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Insere um novo fornecedor com os dados informados.
+        /// </summary>
         [HttpPost]
         public async Task<IActionResult> InsertFornecedor([FromBody] InsertFornecedorDto fornecedor)
         {
@@ -71,6 +85,10 @@ namespace Fornecedores.API.Controllers
             }
         }
 
+        /// <summary>
+        /// Deleta o fornecedor com o id informado.
+        /// </summary>
+        /// <param name="id">Identificador único do fornecedor.</param>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFornecedor(int id)
         {
